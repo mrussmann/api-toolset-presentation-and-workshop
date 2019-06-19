@@ -1,0 +1,47 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  "version": "0.2.0",
+  "configurations": [
+      
+    {
+      "type": "java",
+      "name": "Debug (Launch)",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-ApigatewayApp<apigateway>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/jhipster-api-gateway",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "de.axa.api.platform.ApigatewayApp",
+      "args": "",
+      "projectName": "apigateway"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Launch)-ApiserviceApp<apiservice>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/jhipster-api-service",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "de.axa.api.platform.ApiserviceApp",
+      "args": "-Dloader.main=de.axa.api.platform.ApiserviceApp org.springframework.boot.loader.PropertiesLauncher",
+      "projectName": "apiservice"
+    },
+    {
+      "type": "java",
+      "name": "Debug (Attach)",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": "5005"
+    }
+  ]
+}

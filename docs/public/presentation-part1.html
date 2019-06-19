@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A API-Platform Team Presentation</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Roboto+Mono:700);
+      @import url(https://fonts.googleapis.com/css?family=PT+Mono);
+      @import url(https://fonts.googleapis.com/css?family=Major+Mono+Display);
+      @import url(https://fonts.googleapis.com/css?family=IBM+Plex+Mono:700,400);
+      @import url(https://fonts.googleapis.com/css?family=Crimson+Text);
+      @import url(https://fonts.googleapis.com/css?family=Exo+2);
+
+      body {
+          font-family: 'Crimson Text';}
+      .remark-slide-content {
+          font-size:26px;
+      }
+      h1, h2, h3 {
+        font-family: 'Exo 2';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'IBM Plex Mono'; font-size: 15px; font-weight: 700}
+      .remark-slide-content:after {
+        content: "";
+        position: absolute;
+        bottom: 10px;
+        right: 40px;
+        height: 40px;
+        width: 120px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url('');
+       }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+<center>
+#### Part 1
+# __API First__ and the
+#__API-Platform Toolset__
+</center>
+<br/>
+<br/>
+<br/>
+<br/>
+
+```
+                           _        _      _    __
+                 __ _ _ __(_)  _ __| |__ _| |_ / _|___ _ _ _ __
+                / _` | '_ \ | | '_ \ / _` |  _|  _/ _ \ '_| '  \
+                \__,_| .__/_| | .__/_\__,_|\__|_| \___/_| |_|_|_|
+                   |_|      |_|             (c) api platform team
+```
+---
+## First a little introduction
+
+- of how to use an <a href="https://www.openapis.org" target="_links">OpenAPI-specification</a>
+    for code generation<br> with the <a href="https://openapi-generator.tech" target="_links">Open-API-Generator</a>
+- the use of <a href="https://spring.io/projects/spring-cloud-contract" target="_links">SpringCloud Contracts</a> to generate integration tests and server stubs
+- how to generate a <a href="http://wiremock.org" target_"links">WireMock API-server</a>
+- how to generate generate an API-Client from the server stubs
+
+## In the workshop
+we will do a step-by-step developemnt of an API-First prototype in an Online Development Environment (free Github account needed https://github.com/join)
+
+---
+## Tools we will use
+
+- SpringBoot
+- Maven
+- OpenAPI Generator
+- SpringFox
+- SpringCloud Contracts
+- WireMock-Server
+
+The base application is generated with the JHipster Code Generator https://www.jhipster.tech
+
+---
+## Resources
+
+
+a step by step tutorial is also available in the <strong>Axa-Confluence</strong>
+<p><a href="https://confluence.axa.com/confluence/display/DEITAPIPF/API-First+and+the+API-Platform+Toolset" target="_links">API-First and the API-Platform Toolset</a for local development></p>
+with a corresponding <strong>Axa-Github-Repository</strong>
+<p><a href="https://github.axa.com/de-axa-api-platform/swagger-contract-mock-showcase" target="_links">https://github.axa.com/de-axa-api-platform/swagger-contract-mock-showcase</a>
+</p>
+
+---
+
+### In a nutshell
+## Why __API-First__?
+
+- think of your API as a <font size="10">product</font>, understand the needs of your clients before you get started
+- we can use code-generation (clients, servers, tests and documentation) from the start, saves us <font size="10">time</font>
+- with this ready, the development of the provider and consumer can start <font size="10">early</font> and in <font size="10">parallel</font>
+
+<br>
+so, how can an API specification look like? ...
+
+---
+## The __OpenAPI-specification__
+
+API description format (yaml / json) for REST APIs. An OpenAPI file allows you to describe your entire API, including:
+
+- available endpoints (/users) and operations on each endpoint (GET /users, POST /users)
+- operation parameters input and output for each operation
+- authentication methods
+- contact information, license, terms of use and other info.
+
+<small>Source: https://swagger.io/docs/specification/about/<br></small>
+<br/>
+Example: https://petstore.swagger.io/
+
+---
+
+### we will use the specification with the
+## __OpenAPI-Generator__
+
+- open-source code generator for client libraries, stubs, documentation and configurations
+- written in Java, based on a template engine
+- generates code in different languages and frameworks like Java (Spring, Play, Plain, ...), Go, Python, Javascript (Node), ...
+
+https://openapi-generator.tech
+---
+## __OpenAPI-Generator flow__
+
+<div class="mermaid" style="text-align: center">
+graph TD
+A(OpenAPI specification) -- Comand Line, Maven Plugin, HTTP-Call --> B[OpenAPI Generator]
+B -- templates --> C(Java Code)
+B -- templates --> D(Python Code)
+B -- templates --> E(Go Code)
+</div>
+
+---
+## __OpenAPI-Generator__ Maven Plugin
+<sub>from jhipster-api-service/pom.xml:</sub>
+```xml
+<configuration>
+    <inputSpec>${project.basedir}/src/main/resources/
+                                  swagger/petstore.yml</inputSpec>
+    <generatorName>spring</generatorName>
+    <apiPackage>de.axa.api.platform.web.api</apiPackage>
+    <modelPackage>de.axa.api.platform.web.api.model</modelPackage>
+    <generateSupportingFiles>false</generateSupportingFiles>
+    <validateSpec>true</validateSpec>
+    <configOptions>
+        <delegatePattern>true</delegatePattern>
+        <title>apiservice</title>
+    </configOptions>
+</configuration>
+```
+
+and we will make use of another specification ...
+
+---
+
+### __Consumer Driven Contracts__<br> with Spring Cloud Contracts
+
+__OpenAPI__ defines a __structure of a request / responses__
+
+__<font size="8">contracts</font>__ defines __concrete request / repsonse pairs__:
+
+```yaml
+description: "should return hello"
+request:
+  method: GET
+  url: /api/echo
+  queryParameters:
+    message: "hello"
+response:
+  status: 200
+  body:
+    message: "hello"
+```
+<font size="2">Further information: https://cloud.spring.io/spring-cloud-contract/multi/multi__contract_dsl.html</font>
+---
+
+__<font size="10">cloud contracts</font>__ can be used to<br>__generate API-client and server-stubs, mock-servers and tests__:
+<br>
+<br>
+<div class="mermaid" style="text-align: center">
+graph TD
+A(contract definition) -- code generation --> B(client stubs)
+A -- code generation --> C(server stubs)
+C(server stubs) --> E(wiremock)
+A -- code generation --> D(integration tests)
+</div>
+we will use its maven plugin to do this ...
+---
+## Spring __Cloud Contracts__<br>Maven Plugin
+
+generate the WireMock specific contract stubs
+```bash
+./mvnw spring-cloud-contract:convert
+```
+picks the .json files (output from above) and creates a jar
+```bash
+./mvnw spring-cloud-contract:generateStubs
+```
+generate integration tests
+```bash
+./mvnw spring-cloud-contract:generateTests
+```
+
+---
+### Spring __Cloud Contracts__ generation flow
+
+<div class="mermaid" style="text-align: center">
+graph TD
+A(contracts YAML) -- maven goal --> B(WireMock stubs .json)
+B -- maven goal --> C(WireMock stubs jar)
+B -- file system --> D(WireMock standalone)
+</div>
+
+---
+
+## What is __WireMock__?
+
+WireMock is a simulator for HTTP-based APIs. Some might consider it a service virtualization tool or a mock server.*
+
+-   Request-Matching and Validation
+-   Proxying
+-   Record, Playback
+-   Simulating Faults
+-   can be used inside unit-tests or as a standalone server
+
+*http://wiremock.org
+
+---
+
+### __WireMock__ request flow
+
+<div class="mermaid" style="text-align: center">
+graph TD
+A(Client) -- HTTP request /hello --> B(WireMock)
+B -- match /echo? --> C(Request Definitions .json)
+C -- result hello --> B
+B -- HTTP response hello --> A
+</div>
+
+__WireMock__ uses it's own DSL (.json)
+
+---
+### __WireMock DSL__
+A simple example<br>
+```yaml
+{
+  "id" : "13e99517-4af9-47f1-8de6-264b90816592",
+  "request" : {
+    "url" : "/api/echo",
+    "method" : "GET",
+    },
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"message\":\"hello\"}",
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "13e99517-4af9-47f1-8de6-264b90816592"
+}
+```
+<small>result of _"mvn spring-cloud-contract:convert"_, contracts -> WireMockDSL</small>
+
+<small>More Info: http://wiremock.org/docs/stubbing/</small>
+
+---
+
+### Starting __WireMock__
+
+```bash
+cd wiremock
+java -jar wiremock-standalone-2.23.2.jar --port 8084
+```
+request the wiremock with curl
+```bash
+curl -X GET localhost:8084/api/echo?message=hello
+```
+request the real server which delivers the real result
+```bash
+curl -X GET localhost:8081/api/echo?message=hello
+```
+
+=> the Mock-Server is ready, client development can start __now__
+
+<font size="2">Download: http://repo1.maven.org/maven2/com/github/tomakehurst/wiremock-standalone/2.23.2/wiremock-standalone-2.23.2.jar</font>
+
+---
+
+### the end of part 1 ...
+
+</textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.0.0/mermaid.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.0.0/mermaid.css">
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>
+      var slideshow = remark.create();
+
+      mermaid.initialize({
+        startOnLoad: false,
+        cloneCssStyles: false,
+        });
+
+    function initMermaidInSlide(slide) {
+        var slideIndex = slide.getSlideIndex();
+        // caution: no API to get the DOM element of current slide in remark, this might break in the future
+        var currentSlideElement = document.querySelectorAll(".remark-slides-area .remark-slide")[slideIndex];
+        var currentSlideMermaids = currentSlideElement.querySelectorAll(".mermaid");
+        if (currentSlideMermaids.length !== 0) {
+        mermaid.init(undefined, currentSlideMermaids);
+        }
+    }
+
+    // first starting slide won't trigger the slide event, manually init mermaid
+    initMermaidInSlide(slideshow.getSlides()[slideshow.getCurrentSlideIndex()])
+    // on each slide event, trigger init mermaid
+    slideshow.on('afterShowSlide', initMermaidInSlide);
+
+    </script>
+
+  </body>
+    -->
+</html>
+

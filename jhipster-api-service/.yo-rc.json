@@ -1,0 +1,35 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "de.axa.api.platform"
+    },
+    "jhipsterVersion": "6.0.0",
+    "applicationType": "microservice",
+    "baseName": "apiservice",
+    "packageName": "de.axa.api.platform",
+    "packageFolder": "de/axa/api/platform",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mariadb",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": true,
+    "jwtSecretKey": "ODU5OThjYTRiNDkzNzE0MzJkMWYzMzYxNDYwN2EzODA3MzcwYmVmZDMyOTE3Yzk5ZjA2ZDRkZjhiMTQxMGU4NTcxZjc1ZDAxOTVmOTJhOTE0Y2JmMWQzZWIzMzlkZjBhYjIxMDc0MTg2Yzg4OGQ4ZjQ2MDI5NmM4ZTU2NjQ0NmQ=",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}

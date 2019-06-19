@@ -1,0 +1,16 @@
+{
+  "id" : "de5fc95e-407b-4ab7-9aff-215be0485d58",
+  "request" : {
+    "url" : "/api/products",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "[{\"title\":\"My Product One\",\"price\":20},{\"title\":\"My Product Two\",\"price\":30}]",
+    "headers" : {
+      "content-type" : "application/json;charset=UTF-8"
+    },
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "de5fc95e-407b-4ab7-9aff-215be0485d58"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "presentation",
+  "version": "1.0.0",
+  "description": "show presentations",
+  "main": "start_presentation.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "finalhandler": "^1.1.2",
+    "http": "^0.0.0",
+    "http-proxy": "^1.17.0",
+    "serve-static": "^1.14.1",
+    "swagger-ui": "^3.22.2"
+  },
+  "devDependencies": {
+    "http-proxy-middleware": "^0.19.1",
+    "nodemon": "^1.19.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

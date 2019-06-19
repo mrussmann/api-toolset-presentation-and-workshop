@@ -1,0 +1,13 @@
+description: "should return hello"
+request:
+  method: GET
+  url: /api/echo
+  # removed so the request can run in a browser
+  #headers:
+  #  Content-Type: application/json
+  queryParameters:
+    message: "hello"
+response:
+  status: 200
+  body:
+    message: "hello"

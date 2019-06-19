@@ -1,0 +1,37 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "de.axa.api.platform"
+    },
+    "jhipsterVersion": "6.0.0",
+    "applicationType": "gateway",
+    "baseName": "apigateway",
+    "packageName": "de.axa.api.platform",
+    "packageFolder": "de/axa/api/platform",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mariadb",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZDNhMjA4MjFhM2ViZTUwOTIxYTVjNTBjYWYyMmZlOGQ0YzYwY2M1Njc4MDAxZDU5ZjI1NzRlNWYwZmFhM2JkN2ZlZjdlOTA3MWMzMjU5NTk1YzdiODJjMDQ4OWJiMGU4NzFhYjZiNTA4ZDk2ZWYxYjcxOGM5MjVjOWU5Mzk1MDk=",
+    "clientFramework": "angularX",
+    "clientTheme": "darkly",
+    "clientThemeVariant": "dark",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false
+  }
+}

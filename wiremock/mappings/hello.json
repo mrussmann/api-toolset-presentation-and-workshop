@@ -1,0 +1,18 @@
+{
+  "id" : "019fbe13-f6df-439e-bde9-db7aa2bbaa70",
+  "request" : {
+    "urlPath" : "/api/echo",
+    "method" : "GET",
+    "queryParameters" : {
+      "message" : {
+        "equalTo" : "hello"
+      }
+    }
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"message\":\"hello\"}",
+    "transformers" : [ "response-template" ]
+  },
+  "uuid" : "019fbe13-f6df-439e-bde9-db7aa2bbaa70"
+}

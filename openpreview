@@ -1,0 +1,1 @@
+./gp preview $(gp url 8081)api/my-controller/hello

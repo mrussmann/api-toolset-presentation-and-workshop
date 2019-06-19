@@ -1,0 +1,304 @@
+<html>
+  <head>
+    <title>A API-Platform Team Presentation</title>
+    <meta charset="utf-8">
+     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Roboto+Mono:700);
+      @import url(https://fonts.googleapis.com/css?family=PT+Mono);
+      @import url(https://fonts.googleapis.com/css?family=Major+Mono+Display);
+      @import url(https://fonts.googleapis.com/css?family=IBM+Plex+Mono:700,400);
+      @import url(https://fonts.googleapis.com/css?family=Crimson+Text);
+      @import url(https://fonts.googleapis.com/css?family=Exo+2);
+
+      body {
+          font-family: 'Crimson Text';}
+      .remark-slide-content {
+          font-size:20px;
+      }
+      h1, h2, h3 {
+        font-family: 'Exo 2';
+        font-weight: normal;
+      }
+
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      .remark-code, .remark-inline-code {
+          font-family: 'IBM Plex Mono';
+          font-size: 15px;
+          font-weight: 700
+      }
+      .remark-slide-content:after {
+        content: "";
+        position: absolute;
+        bottom: 10px;
+        right: 40px;
+        height: 40px;
+        width: 120px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url('');
+       }
+
+      .remark-slide-content h1 { font-size: 3em; }
+      .remark-slide-content h2 { font-size: 2em; }
+      .remark-slide-content h3 { font-size: 1.6em; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 45%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 45%;
+        height: 92%;
+        float: right;
+      }
+       .reveal i.fa { font-family:FontAwesome; font-style: normal; }
+
+    </style>
+  </head>
+  <body>
+
+<textarea id="source">
+name: inverse
+layout: true
+class: inverse, middle
+---
+
+<center>
+###__A Study in <a href="#" target="_new">PortalRed</a>__
+
+# Showcase of API-Documentation Options
+
+</center>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+```
+                           _        _      _    __
+                 __ _ _ __(_)  _ __| |__ _| |_ / _|___ _ _ _ __
+                / _` | '_ \ | | '_ \ / _` |  _|  _/ _ \ '_| '  \
+                \__,_| .__/_| | .__/_\__,_|\__|_| \___/_| |_|_|_|
+                   |_|      |_|             (c) api platform team
+```
+
+---
+
+## Based on a simple solution
+
+Use of NodeJS.red[*] an an API-Gatweay to
+
+- route (Test)-Requests as an Gateway from the Browser to the Backend
+
+- To render additional documentation ...
+
+- be easily extendable, e.g to connect to a (Headless) CMS ... (in the Cloud!)
+
+- maybe as a base for an API-Portal
+
+
+.footnote[.red[*] python flask and the golang standard library are suited as well]
+
+---
+
+## API-Documentation Showcases
+
+Based on SwaggerUI
+
+### <i class="fa fa-dot-circle-o" style="color: white"></i> <a href="./swaggerui.html" target="_new">API Portal 1</a>
+like we are doing it right now
+
+<hr/>
+Based on a combination of Custom Documentation and a SwaggerUI
+
+###<i class="fa fa-dot-circle-o" style="color: white"></i>  <a href="./scribbler/index.html" target="_new">API Portal 2</a>
+
+sort of the APIGee (Google) and the Amazon developer Portal
+
+<hr/>
+
+Based on Redoc
+
+### <i class="fa fa-dot-circle-o" style="color: white"></i> <a href="./redoc.html" target="_new">API Portal 3</a>
+
+like Spotify and Docker is doing it
+
+---
+layout: false
+## __API-Portal-Gateway-Architecture__ .red[_compared_] <i class="fa fa-code-fork"></i>
+.left-column[
+### __Current__ <i class="fa fa-trash-o"></i>
+<div class="mermaid" style="height: 250px">
+graph TD
+A(Request) --> B[NGINX - SSL Handing and Static Content]
+B -- Specification --> D(API Service)
+B -- Specifcation --> E(API Service)
+</div>
+]
+
+.right-column[
+### __Dynamic__ <i class="fa fa-fire" style="color: red"></i>
+<center>
+<div class="mermaid" style="height: 330px">
+graph TD
+A(Request) --> B[NGINX - SSL Handing and Static Content]
+B --> C(NodeJS - Dynamic Content and Routing)
+C -- Specification --> D(API Service)
+C -- Specifcation --> E(API Service)
+</div>
+</center>
+]
+
+---
+template: inverse
+
+## <i class="fa fa-external-link fa-lg"></i> Resources
+
+https://nodejs.org/en/
+
+https://swagger.io/tools/swagger-ui/
+
+https://github.com/Rebilly/ReDoc
+
+https://docs.aws.amazon.com/de_de/apigateway/latest/developerguide/apigateway-developer-portal.html
+
+https://cloud.google.com/apigee/
+
+http://www.literaturepage.com/read/astudyinscarlet.html (for the daring ones)
+
+<br>
+### The End
+
+
+</textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.0.0/mermaid.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.0.0/mermaid.css">
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>
+      var slideshow = remark.create();
+
+      mermaid.initialize({
+        startOnLoad: false,
+        cloneCssStyles: false,
+        });
+
+    function initMermaidInSlide(slide) {
+        var slideIndex = slide.getSlideIndex();
+        // caution: no API to get the DOM element of current slide in remark, this might break in the future
+        var currentSlideElement = document.querySelectorAll(".remark-slides-area .remark-slide")[slideIndex];
+        var currentSlideMermaids = currentSlideElement.querySelectorAll(".mermaid");
+        if (currentSlideMermaids.length !== 0) {
+        mermaid.init(undefined, currentSlideMermaids);
+        }
+    }
+
+    // first starting slide won't trigger the slide event, manually init mermaid
+    initMermaidInSlide(slideshow.getSlides()[slideshow.getCurrentSlideIndex()])
+    // on each slide event, trigger init mermaid
+    slideshow.on('afterShowSlide', initMermaidInSlide);
+
+    </script>
+
+  </body>
+    -->
+</html>
+

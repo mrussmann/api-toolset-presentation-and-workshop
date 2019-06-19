@@ -1,0 +1,45 @@
+swagger: "2.0" # OpenAPI-Version
+info:  # Metadata
+  version: 0.0.1
+  title: ProductAPI
+  description: A very simple product API
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+basePath: /api # relative base-path of your API
+paths: # defines the endpoints
+  /products: # /api/products
+    get: # REST Method
+      description: Returns
+      operationId: getProducts # optional
+      parameters:
+      - name: limit
+        in: query
+        description: maximum number of results to return
+        required: false
+        type: integer
+        format: int32
+      responses:
+        '200':
+          description: A list of products
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+
+definitions: # of your models
+  Product:
+    type: object
+    properties:
+      product_id:
+        type: string
+        description: Unique identifier of a product
+      title:
+        type: string
+        description: Title of your product
+      description:
+        type: string
+        description: Product description
+      price:
+        type: number
+        description: Product price

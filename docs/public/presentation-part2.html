@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A API-Platform Team Presentation</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Roboto+Mono:700);
+      @import url(https://fonts.googleapis.com/css?family=PT+Mono);
+      @import url(https://fonts.googleapis.com/css?family=Major+Mono+Display);
+      @import url(https://fonts.googleapis.com/css?family=IBM+Plex+Mono:700,400);
+      @import url(https://fonts.googleapis.com/css?family=Crimson+Text);
+      @import url(https://fonts.googleapis.com/css?family=Exo+2);
+
+      body {
+          font-family: 'Crimson Text';}
+      .remark-slide-content {
+          font-size:26px;
+      }
+      h1, h2, h3 {
+        font-family: 'Exo 2';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'IBM Plex Mono'; font-size: 15px; font-weight: 700}
+      .remark-slide-content:after {
+        content: "";
+        position: absolute;
+        bottom: 10px;
+        right: 40px;
+        height: 40px;
+        width: 120px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url('');
+       }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+<center>
+#### Part 2
+
+# Setting Up a
+#__Microservice Environment__
+</center>
+<br/>
+<br/>
+<br/>
+<br/>
+
+```
+                           _        _      _    __
+                 __ _ _ __(_)  _ __| |__ _| |_ / _|___ _ _ _ __
+                / _` | '_ \ | | '_ \ / _` |  _|  _/ _ \ '_| '  \
+                \__,_| .__/_| | .__/_\__,_|\__|_| \___/_| |_|_|_|
+                   |_|      |_|             (c) api platform team
+```
+---
+
+# __what we will do__
+
+### setting up a __microservice environment__ with
+
+- a gateway
+- a service registry,
+<p>and</p>
+- a API-provider-(micro)service (which we developed in part 1)
+<br/>
+<br/>
+<div class="mermaid">
+graph TD
+Gateway(API-Gateway)
+ServiceRegistry(Service-Registry)
+API-Provider(API-Provider)
+</mermaid>
+
+---
+## tools we will use
+
+- An API-Microservice based on SpringBoot (developed in part 1)
+- an API-Gateway based on Netflix Zuul
+- an ServiceRegistry based on Netflix Eureka
+
+The base application is generated with the JHipster code generator https://www.jhipster.tech
+
+---
+## what the components do
+- the __API-provider registers__ with a __service-registry__
+- the __API-gateway requests__ information about the current active services from the __registry__
+- the __API-gateway__ will __expose__ the routes to external __api-client__
+
+<div class="mermaid">
+graph TD
+Gateway(API-Gateway)
+Gateway -- Registered Clients? --> Registry(Registry);
+Gateway -- Route 1 --> Client1(API-Provider 1);
+Gateway -- Route 2 --> Client2(API-Provider 2);
+Gateway -- Route 3 --> Client3(API-Provider 3);
+Client1 -- Registers --> Registry;
+Client2 -- Registers --> Registry;
+Client3 -- Registers --> Registry;
+</div>
+
+---
+
+### __before we start__
+## why __microservices__?
+- better maintance: each small service can be individually developed, maintained, tested and replaced -> no technology lock-in
+- (better) scalability: each service can be individually scaled
+- (increased) resilience - individuall failure handling, failures will not effect the entire system
+- old linux philosophy: do one thing and do it right
+
+---
+
+## but it's __not__ a __free__ lunch
+- each service (the interfaces) must be well defined - needs a good (domain driven) design upfront
+- needs infrastructure around it (for monitoring, continuous integration, deployment, testing, ...)
+- solid monitoring needed, not as easy to debug and monitor as a comparable monolith
+- shift to devops culture and product thinking (increased skills needed in every team, more responsibility, top-down)
+- system gets more complex, as an example ...
+
+---
+
+#### number of interfaces i in a system with n microservices:
+$$i = {n * (n-1) \over 2}$$
+<center>
+<table class="table" style="border: 1px solid black;">
+  <tbody>
+    <tr>
+      <td># services</td>
+      <td align="right" style="width: 80px">5</td>
+      <td align="right" style="width: 80px">10</td>
+      <td align="right" style="width: 80px">20</td>
+      <td align="right" style="width: 80px">40</td>
+    </tr>
+    <tr>
+      <td># interfaces</td>
+      <td align="right">10</td>
+      <td align="right">45</td>
+      <td align="right">190</td>
+      <td align="right">780</td>
+    </tr>
+  </tbody>
+</table>
+</center>
+
+<center>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Metcalfe-Network-Effect.svg/1200px-Metcalfe-Network-Effect.svg.png" height="300px"/>
+</center>
+<sub>image source: wikipedia</sub>
+
+<div class="mermaid">
+graph TD
+Service 1 --> Registry(Registry);
+Gateway -- Route 1 --> Client1(API-Provider 1);
+Gateway -- Route 2 --> Client2(API-Provider 2);
+Gateway -- Route 3 --> Client3(API-Provider 3);
+Client1 -- Registers --> Registry;
+Client2 -- Registers --> Registry;
+Client3 -- Registers --> Registry;
+</div>
+---
+
+### __HandsOn__
+#### -> running the sample environment
+
+structure of the sample project
+
+```bash
+- jhipster-ms-showcase
+-- jhipster-api-gateway
+-- jhipster-api-gateway-nofrontend*
+-- jhipster-registry
+-- jhipster-registry-nofrontend*
+-- jhipster-api-microservice
+```
+
+<sub>
+*the nofrontends projects have no angular frontend included
+</sub>
+
+---
+
+### __two options__ to install the sample
+
+__option 1__: use a preconfigured __online development environment__ (ready to code in around a minute) on gitpod
+<br><sub>requirements: github account, free to join: https://github.com/join</sub>
+
+
+-> <a href="https://gitpod.io/#https://github.com/mrussmann/jhipster-ms-showcase" target="_new">Open the online development environment</a>
+
+__option 2__: __checkout__ the code to your local harddrive and configure
+<br><sub>requirements: java, maven needed, node, npm (for the frontends >v9)</sub>
+
+```bash
+git clone https://github.com/mrussmann/jhipster-ms-showcase
+```
+
+---
+### 1. start the service registry
+
+```bash
+cd jhipster-registry-nofrontend // ./mvnw
+```
+
+The service registry will start to listen on port 8761 for client-requests (configurable)
+
+The use of a SpringBoot-application as an Eureka server and client can be configured through
+<p><strong><font size="12">configurations</font></strong>
+and <strong><font size="12">annotations</font></strong></p>
+
+---
+
+#### __Configuration__ of the Eureka server and client
+<sub>application(-env).yml in src/resource/config</sub>
+```yaml
+eureka:
+    instance:
+        appname: jhipster-registry
+        instanceId: jhipsterRegistry:
+                    ${spring.application.instance-id:${random.value}}
+        prefer-ip-address: true
+        lease-renewal-interval-in-seconds: 5
+        lease-expiration-duration-in-seconds: 10
+        status-page-url-path: ${management.endpoints.web.base-path}/info
+        health-check-url-path: ${management.endpoints.web.base-path}/health
+...
+    client:
+        enabled: true
+        fetch-registry: false
+        register-with-eureka: false
+        instance-info-replication-interval-seconds: 10
+        registry-fetch-interval-seconds: 10
+        service-url:
+            defaultZone:
+                http://admin:${spring.security.user.password:admin}
+                    @localhost:${server.port}/eureka/
+```
+
+---
+
+#### __Annotations__ in the java-main class:
+
+```java
+@EnableEurekaServer
+@EnableConfigServer
+@SpringBootApplication
+@EnableConfigurationProperties(
+    {ApplicationProperties.class, ConfigServerConfig.class})
+@EnableDiscoveryClient
+@EnableZuulProxy
+public class JHipsterRegistryApp {
+    ...
+    @PostConstruct
+    public void initApplication() {
+    ...
+    }
+     public static void main(String[] args) {
+        SpringApplication app =
+                new SpringApplication(JHipsterRegistryApp.class);
+        ...
+     }
+}
+```
+---
+## what does a service-registry?
+
+- registration-service for applications
+- gives information about the actual registered applications
+- makes regulary health checks on this applications
+
+---
+
+## 2. starting the API-Gateway
+
+```bash
+cd jhipster-gateway-nofrontend/ && ./mvnw
+```
+
+<small>the API-Gateway is also configured as an Eureka client</small>
+
+```java
+@SpringBootApplication
+@EnableConfigurationProperties(
+    {LiquibaseProperties.class, ApplicationProperties.class})
+@EnableDiscoveryClient
+@EnableZuulProxy
+public class ApigatewaynfApp implements InitializingBean {
+    ...
+    public static void main(String[] args) {
+        ...
+    }
+    ...
+}
+```
+
+<small>on startup (port 8080) the __gateway__ will register with the __service-registry__</small>
+
+---
+### what does an API-gateway?
+
+- __exposes routes__ to the outside world as a single access point
+- handles __security__ (authorization and authentication)
+- __rate limiting__
+- __resilience__
+- __monitoring__
+- configurability and programmability, e.g. through request-filters
+- in our context: works together with the service-registry to know all services
+
+---
+## 3. starting the API-(micro)service
+
+check the configuration if the registry client (because it was set to off for the development in part 1) is enabled:
+[in src/main/resources/application.yml]:
+```yaml
+eureka:
+  client:
+*    enabled: true // if true the service will register on startup
+```
+
+start the api-service
+```base
+ cd jhipster-api-service/ && ./mvnw
+```
+
+---
+
+the API-service will start on port 8081
+<br> and it will register with the service-registry<br>
+the API-gateway requests this information from the registry and exposes the API to the outside world
+<center>
+<div class="mermaid">
+graph TD
+Gateway:8080 -- applications? --> Registry(Service-Registry:8761);
+Gateway:8080 -- Routes Requests --> API-Service(API-Service:8081);
+API-Service -- Registers --> Registry;
+</div>
+</center>
+
+---
+
+### it can be tested with __HTTP-REST-Requests__:
+
+ask the service-registry for all registered applications
+
+```bash
+curl -X GET localhost:8761/api/eureka/applications
+```
+
+ask the gateway for the routes
+```bash
+curl -X GET localhost:8080/api/gateway/routes
+```
+
+request the API-service through the gateway
+```bash
+curl -X GET localhost:8080/services/apiservice/api/echo?message=hello
+```
+
+---
+## the end
+
+</textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.0.0/mermaid.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.0.0/mermaid.css">
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>
+      var slideshow = remark.create();
+
+      mermaid.initialize({
+        startOnLoad: false,
+        cloneCssStyles: false,
+        });
+
+    function initMermaidInSlide(slide) {
+        var slideIndex = slide.getSlideIndex();
+        // caution: no API to get the DOM element of current slide in remark, this might break in the future
+        var currentSlideElement = document.querySelectorAll(".remark-slides-area .remark-slide")[slideIndex];
+        var currentSlideMermaids = currentSlideElement.querySelectorAll(".mermaid");
+        if (currentSlideMermaids.length !== 0) {
+        mermaid.init(undefined, currentSlideMermaids);
+        }
+    }
+
+    // first starting slide won't trigger the slide event, manually init mermaid
+    initMermaidInSlide(slideshow.getSlides()[slideshow.getCurrentSlideIndex()])
+    // on each slide event, trigger init mermaid
+    slideshow.on('afterShowSlide', initMermaidInSlide);
+
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  </body>
+    -->
+</html>
+
