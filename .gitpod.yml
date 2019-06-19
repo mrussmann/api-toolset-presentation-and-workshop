@@ -11,10 +11,8 @@ tasks:
 - command: npm install -g npm &&
     npm install -g yo &&
     npm install -g generator-jhipster
-# - command: cd jhipster-registry-nofrontend && _JAVA_OPTIONS="-Xmx1G" ./mvnw
 - command: cd jhipster-api-service && _JAVA_OPTIONS="-Xmx750M" ./mvnw
-- command:
-    open /workspace/jhipster-ms-showcase/jhipster-api-service/src/main/resources/swagger/productapi.yml &&
+- command: open /workspace/jhipster-ms-showcase/jhipster-api-service/src/main/resources/swagger/productapi.yml &&
     open /workspace/jhipster-ms-showcase/jhipster-api-service/pom.xml &&
     open /workspace/jhipster-ms-showcase/jhipster-api-service/src/main/resources/config/bootstrap.yml &&
     open /workspace/jhipster-ms-showcase/jhipster-api-service/src/main/resources/config/application-dev.yml &&
