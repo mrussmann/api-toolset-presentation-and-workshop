@@ -148,3 +148,5 @@ Desktop.ini
 *.sha256
 .openapi*
 core.java.*
+# for the show
+ProductService.java
