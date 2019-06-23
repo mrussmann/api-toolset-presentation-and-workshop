@@ -1,56 +1,92 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>A API-Platform Team Presentation</title>
-    <meta charset="utf-8">
-    <style>
-      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
-      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
-      @import url(https://fonts.googleapis.com/css?family=Roboto+Mono:700);
-      @import url(https://fonts.googleapis.com/css?family=PT+Mono);
-      @import url(https://fonts.googleapis.com/css?family=Major+Mono+Display);
-      @import url(https://fonts.googleapis.com/css?family=IBM+Plex+Mono:700,400);
-      @import url(https://fonts.googleapis.com/css?family=Crimson+Text);
-      @import url(https://fonts.googleapis.com/css?family=Exo+2);
 
-      body {
-          font-family: 'Crimson Text';}
-      .remark-slide-content {
-          font-size:26px;
-      }
-      h1, h2, h3 {
-        font-family: 'Exo 2';
-        font-weight: normal;
-      }
-      .remark-code, .remark-inline-code { font-family: 'IBM Plex Mono'; font-size: 15px; font-weight: 700}
-      .remark-slide-content:after {
-        content: "";
-        position: absolute;
-        bottom: 10px;
-        right: 40px;
-        height: 40px;
-        width: 120px;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-image: url('');
-       }
-       #swagger-ui{
-        zoom: 0.4;
-        -moz-transform: scale(0.4);
-       }
-        iframe {
-            display:block;
-            width:100%;
-            height: 600px;
-            #height:100vh;
-        }
-    </style>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.22.2/swagger-ui.css" >
-  </head>
-  <body>
-    <textarea id="source">
+<head>
+	<title>A API-Platform Team Presentation</title>
+	<meta charset="utf-8">
+	<style>
+		@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+		@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+		@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:700);
+		@import url(https://fonts.googleapis.com/css?family=PT+Mono);
+		@import url(https://fonts.googleapis.com/css?family=Major+Mono+Display);
+		@import url(https://fonts.googleapis.com/css?family=IBM+Plex+Mono:700,400);
+		@import url(https://fonts.googleapis.com/css?family=Crimson+Text);
+		@import url(https://fonts.googleapis.com/css?family=Exo+2);
 
-## __API Platform__ Workshop
+		body {
+			font-family: 'Crimson Text';
+		}
+
+		.remark-slide-content {
+			font-size: 26px;
+		}
+
+		h1,
+		h2,
+		h3 {
+			font-family: 'Exo 2';
+			font-weight: normal;
+		}
+
+		.remark-code,
+		.remark-inline-code {
+			font-family: 'IBM Plex Mono';
+			font-size: 15px;
+			font-weight: 700
+		}
+
+		.remark-slide-content:after {
+			content: "";
+			position: absolute;
+			bottom: 10px;
+			right: 40px;
+			height: 40px;
+			width: 120px;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-image: url('');
+		}
+
+		#swagger-ui {
+			zoom: 0.4;
+			-moz-transform: scale(0.4);
+		}
+
+		iframe {
+			display: block;
+			width: 100%;
+			height: 600px;
+			#height: 100vh;
+		}
+
+		hr {
+			background-color: gray;
+			height: 2px;
+			border: 0;
+		}
+
+		a:link {
+			color: black;
+		}
+		a:visited {
+			color: black;
+		}
+		a:hover {
+			color: black;
+		}
+		a:active {
+			color: black;
+		}
+	</style>
+
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.22.2/swagger-ui.css">
+</head>
+
+<body>
+	<textarea id="source">
+
+## __API Platform__ Team
 
 <p>We provide a <font size="10">platform</font> and a <font size="10">toolset</font> to support your API development.<p>
 
@@ -67,12 +103,13 @@
 
 ---
 
-## __API-Platform Workshop__
+## __API-Platform__ <br>__Presentation and Workshop__
 
 <p>Part 1: <a href="public/presentation-part1.html"><strong>API-First and the Platform API-Toolset</strong></a></p>
 
 <p>Part 2: <a href="public/presentation-part2.html"><strong>Setting Up a Microservice Environment</strong></a></p>
-<hr noshade>
+
+<hr>
 In the first part of this presentation an API-Service will be developed which demonstrates the API-first principle.
 In the second part this microservice will be integrated into a Microservice Environment with a Service-Registry and
 an API-Gateway.
@@ -116,4 +153,3 @@ Workshop: <a href="public/workshop.html"><strong>Build a Microservice and a Mock
   </body>
     -->
 </html>
-
