@@ -16,7 +16,7 @@ response:
   body: [
             {
                 "title": "My Product One",
-                "price": 20
+                "price": 10
             },
             {
                 "title": "My Product Two",
