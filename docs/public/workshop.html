@@ -490,15 +490,14 @@ public class ProductService implements ProductsApiDelegate{
 
 and make a request with the SwaggerUI
 
+it should be return what you have implemented (with a 200 OK status)
+
 ---
 
-### <i class="fas fa-file-signature"></i> Write a __Contract
+### <i class="fas fa-file-signature"></i> Write a __Contract__
 #### in the Spring Cloud Contract DSL
+in src/test/resources/contracts/product.yml
 
-```bash
-/workspace/jhipster-ms-showcase/jhipster-api-service/src/test/
-    resources/contracts/productapi.yml
-```
 #### Template
 ```yaml
 description: "should return a list of products"
@@ -517,20 +516,24 @@ response:
 
 ---
 
-### <i class="fas fa-cogs"></i> Generate the WireMock specific contract stubs
-#### from the just written contract files:
+### <i class="fas fa-cogs"></i> Generate the Tests and the WireMock specific stubs
 
-```bash
-./mvnw spring-cloud-contract:convert
-```
-#### from the just generated .json files and creates a jar
-```bash
-./mvnw spring-cloud-contract:generateStubs
-```
 #### generate integration tests
 ```bash
 ./mvnw spring-cloud-contract:generateTests
 ```
+files will be generated in target/generated-test-sources/contracts
+
+#### from the just written contract files:
+```bash
+./mvnw spring-cloud-contract:convert
+```
+
+#### (not needed here) from the just generated .json files and creates a jar
+```bash
+./mvnw spring-cloud-contract:generateStubs
+```
+
 
 ---
 
