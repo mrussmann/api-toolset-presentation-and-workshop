@@ -1,8 +1,8 @@
 ports:
 - port: 8081
   onOpen: open-preview
-- port: 3000
-  onOpen: open-preview
+#- port: 3000
+#  onOpen: open-preview
 - port: 18081
   onOpen: ignore
 - port: 5005
