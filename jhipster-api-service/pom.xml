@@ -355,31 +355,6 @@
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>
         <plugins>
-         <plugin>
-                    <groupId>org.springframework.cloud</groupId>
-                    <artifactId>spring-cloud-contract-maven-plugin</artifactId>
-                    <extensions>true</extensions>
-                    <configuration>
-                        <baseClassForTests>de.axa.api.platform.contract.ContractBaseTest</baseClassForTests>
-                        <contractsDirectory>src/test/resources/contracts/</contractsDirectory>
-                        <basePackageForTests>de.axa.api.platform.contract.test</basePackageForTests>
-                        <testMode>MOCKMVC</testMode>
-                        <testFramework>JUNIT</testFramework>
-                        <classifier>stubs</classifier>
-                        <nameSuffixForTests>IT</nameSuffixForTests>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>contract-based-tests</id>
-                            <phase>pre-integration-test</phase>
-                            <goals>
-                            <goal>convert</goal>
-                            <goal>generateStubs</goal>
-                            <goal>generateTests</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -1026,6 +1001,31 @@
                             </configuration>
                         </plugin>
                     </plugins>
+                      <plugin>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-contract-maven-plugin</artifactId>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <baseClassForTests>de.axa.api.platform.contract.ContractBaseTest</baseClassForTests>
+                        <contractsDirectory>src/test/resources/contracts/</contractsDirectory>
+                        <basePackageForTests>de.axa.api.platform.contract.test</basePackageForTests>
+                        <testMode>MOCKMVC</testMode>
+                        <testFramework>JUNIT</testFramework>
+                        <classifier>stubs</classifier>
+                        <nameSuffixForTests>IT</nameSuffixForTests>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>contract-based-tests</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                            <goal>convert</goal>
+                            <goal>generateStubs</goal>
+                            <goal>generateTests</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
                 </pluginManagement>
             </build>
         </profile>
