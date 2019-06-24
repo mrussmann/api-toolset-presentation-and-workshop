@@ -781,36 +781,7 @@
                         </execution>
                     </executions>
                 </plugin>
-                <plugin>
-                    <!--
-                        Plugin that provides API-first development using openapi-generator to
-                        generate Spring-MVC endpoint stubs at compile time from an OpenAPI definition file
-                    -->
-                    <groupId>org.openapitools</groupId>
-                    <artifactId>openapi-generator-maven-plugin</artifactId>
-                    <version>${openapi-generator-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>generate</goal>
-                            </goals>
-                            <configuration>
-                                <inputSpec>${project.basedir}/src/main/resources/swagger/productapi.yml</inputSpec>
-                                <generatorName>spring</generatorName>
-                                <apiPackage>de.axa.api.platform.web.gen.api</apiPackage>
-                                <modelPackage>de.axa.api.platform.web.gen.api.model</modelPackage>
-                                <output>${project.basedir}</output>
-                                <generateSupportingFiles>true</generateSupportingFiles>
-                                <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
-                                <validateSpec>true</validateSpec>
-                                <configOptions>
-                                    <delegatePattern>true</delegatePattern>
-                                    <title>apiservice</title>
-                                </configOptions>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
+
                  <!-- spring cloud contract plugin to generate integration tests and wiremock stubs out of contracts -->
                 <plugin>
                     <groupId>org.springframework.cloud</groupId>
@@ -1063,5 +1034,42 @@
             </build>
         </profile>
         <!-- jhipster-needle-maven-add-profile -->
+        <profile>
+            <id>openapi</id>
+            <build>
+            <plugins>
+            <plugin>
+                    <!--
+                        Plugin that provides API-first development using openapi-generator to
+                        generate Spring-MVC endpoint stubs at compile time from an OpenAPI definition file
+                    -->
+                    <groupId>org.openapitools</groupId>
+                    <artifactId>openapi-generator-maven-plugin</artifactId>
+                    <version>${openapi-generator-maven-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <inputSpec>${project.basedir}/src/main/resources/swagger/empty.yml</inputSpec>
+                                <generatorName>spring</generatorName>
+                                <apiPackage>de.axa.api.platform.web.gen.api</apiPackage>
+                                <modelPackage>de.axa.api.platform.web.gen.api.model</modelPackage>
+                                <output>${project.basedir}</output>
+                                <generateSupportingFiles>true</generateSupportingFiles>
+                                <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+                                <validateSpec>true</validateSpec>
+                                <configOptions>
+                                    <delegatePattern>true</delegatePattern>
+                                    <title>apiservice</title>
+                                </configOptions>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+            </build>
+        </profile>
     </profiles>
 </project>
