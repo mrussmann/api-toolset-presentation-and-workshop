@@ -8,17 +8,17 @@ ports:
 - port: 5005
   onOpen: ignore
 tasks:
-- command: npm install -g npm &&
-    npm install -g yo &&
-    npm install -g generator-jhipster
+# - command: npm install -g npm &&
+#    npm install -g yo &&
+#    npm install -g generator-jhipster
 - command: cd jhipster-api-service && _JAVA_OPTIONS="-Xmx750M" ./mvnw
-- command: open /workspace/api-toolset-presentation-and-workshop/jhipster-api-service/src/main/resources/swagger/productapi.yml &&
-    open /workspace/api-toolset-presentation-and-workshop/jhipster-api-service/pom.xml &&
-    open /workspace/api-toolset-presentation-and-workshop/jhipster-api-service/src/main/resources/config/bootstrap.yml &&
-    open /workspace/api-toolset-presentation-and-workshop/jhipster-api-service/src/main/resources/config/application-dev.yml &&
-    open /workspace/api-toolset-presentation-and-workshop/jhipster-api-service/src/main/java/de/axa/api/platform/web/api/EchoApiController.java &&
-    open /workspace/api-toolset-presentation-and-workshsop/jhipster-api-service/src/main/java/de/axa/api/platform/web/api/EchoApiDelegate.java
+#- command: open #/workspace/api-toolset-presentation-and-workshop/jhipster-api-service/src/main/resources/swagger/productapi.yml &&
+#    open /workspace/api-toolset-presentation-and-workshop/jhipster-api-service/pom.xml &&
+#    open /workspace/api-toolset-presentation-and-workshop/jhipster-api-service/src/main/resources/config/bootstrap.yml &&
+#    open /workspace/api-toolset-presentation-and-workshop/jhipster-api-service/src/main/resources/config/application-dev.yml &&
+#    open /workspace/api-toolset-presentation-and-workshop/jhipster-api-service/src/main/java/de/axa/api/platform/web/api/EchoApiController.java &&
+#    open /workspace/api-toolset-presentation-and-workshsop/jhipster-api-service/src/main/java/de/axa/api/platform/web/api/EchoApiDelegate.java
 
 # - command: gp preview $(gp url 8081)
 # - init: wget http://repo1.maven.org/maven2/com/github/tomakehurst/wiremock-standalone/2.23.2/wiremock-standalone-2.23.2.jar -P /workspace/jhipster-ms-showcase/wiremock
-- command: cd docs/ && npm install && node express.js
+# - command: cd docs/ && npm install && node express.js
