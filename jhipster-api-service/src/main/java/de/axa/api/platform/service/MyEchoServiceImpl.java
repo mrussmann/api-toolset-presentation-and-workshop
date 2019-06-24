@@ -1,7 +1,7 @@
 package de.axa.api.platform.service;
 
-import de.axa.api.platform.web.api.EchoApiDelegate;
-import de.axa.api.platform.web.api.model.EchoResponse;
+import de.axa.api.platform.web.gen.api.EchoApiDelegate;
+import de.axa.api.platform.web.gen.api.model.EchoResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
