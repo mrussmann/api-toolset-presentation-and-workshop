@@ -270,6 +270,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -775,6 +781,33 @@
                         </execution>
                     </executions>
                 </plugin>
+
+                 <!-- spring cloud contract plugin to generate integration tests and wiremock stubs out of contracts -->
+                <plugin>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-contract-maven-plugin</artifactId>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <baseClassForTests>de.axa.api.platform.contract.ContractBaseTest</baseClassForTests>
+                        <contractsDirectory>src/test/resources/contracts/</contractsDirectory>
+                        <basePackageForTests>de.axa.api.platform.contract.test</basePackageForTests>
+                        <testMode>MOCKMVC</testMode>
+                        <testFramework>JUNIT</testFramework>
+                        <classifier>stubs</classifier>
+                        <nameSuffixForTests>IntegrationTest</nameSuffixForTests>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>contract-based-tests</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                            <goal>convert</goal>
+                            <goal>generateStubs</goal>
+                            <goal>generateTests</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
                 <plugin>
                     <groupId>org.sonarsource.scanner.maven</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
@@ -785,10 +818,8 @@
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring-boot.version}</version>
                 </plugin>
-
             </plugins>
         </pluginManagement>
-
     </build>
     <profiles>
         <profile>
@@ -873,8 +904,6 @@
                         <groupId>pl.project13.maven</groupId>
                         <artifactId>git-commit-id-plugin</artifactId>
                     </plugin>
-                                     <!-- spring cloud contract plugin to generate integration tests and wiremock stubs out of contracts -->
-
                 </plugins>
             </build>
             <properties>
@@ -1001,36 +1030,11 @@
                             </configuration>
                         </plugin>
                     </plugins>
-                      <plugin>
-                    <groupId>org.springframework.cloud</groupId>
-                    <artifactId>spring-cloud-contract-maven-plugin</artifactId>
-                    <extensions>true</extensions>
-                    <configuration>
-                        <baseClassForTests>de.axa.api.platform.contract.ContractBaseTest</baseClassForTests>
-                        <contractsDirectory>src/test/resources/contracts/</contractsDirectory>
-                        <basePackageForTests>de.axa.api.platform.contract.test</basePackageForTests>
-                        <testMode>MOCKMVC</testMode>
-                        <testFramework>JUNIT</testFramework>
-                        <classifier>stubs</classifier>
-                        <nameSuffixForTests>IT</nameSuffixForTests>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>contract-based-tests</id>
-                            <phase>pre-integration-test</phase>
-                            <goals>
-                            <goal>convert</goal>
-                            <goal>generateStubs</goal>
-                            <goal>generateTests</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
                 </pluginManagement>
             </build>
         </profile>
         <!-- jhipster-needle-maven-add-profile -->
-        <profile>
+          <profile>
             <id>openapi</id>
             <build>
             <plugins>
@@ -1048,7 +1052,7 @@
                                 <goal>generate</goal>
                             </goals>
                             <configuration>
-                                <inputSpec>${project.basedir}/src/main/resources/swagger/productapi.yml</inputSpec>
+                                <inputSpec>${project.basedir}/src/main/resources/swagger/empty.yml</inputSpec>
                                 <generatorName>spring</generatorName>
                                 <apiPackage>de.axa.api.platform.web.gen.api</apiPackage>
                                 <modelPackage>de.axa.api.platform.web.gen.api.model</modelPackage>
