@@ -277,25 +277,6 @@ C -- Generation of WireMock Stubs --> D[Working WireMock]
 ---
 
 .left-column[
-  ## <i class="fas fa-tools"></i> __What__
-  ## __we will use__
-]
-
-.right-column[
-<br>
-### - __SpringBoot__
-### - __Maven (and Plugins)__
-### - __OpenAPI-Generator__
-### - __SpringFox__
-### - __SwaggerUI__
-### - __WireMock__
-### - __Gitpod__
-
-]
-
----
-
-.left-column[
   ## <i class="fas fa-clipboard-list"></i> __What__
   ## __we need__
 ]
@@ -323,6 +304,11 @@ C -- Generation of WireMock Stubs --> D[Working WireMock]
   __https://gitpod.io__ (from Typefox, Kiel)
 
   The Browser IDE is based on<br> __Visual Studio Code__
+
+  -> No local setup needed and configuration needed
+
+  -> Workspaces can be shared
+
 ]
 
 .right-column[
@@ -360,6 +346,24 @@ __Important shortcuts:__
 - "Open Ports" - tab in the lower terminal area top open the browser preview
 
 ---
+
+<br>
+<br>
+
+A SwaggerUI-Preview will open when the service is ready
+
+## Everybody ready?
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+#### then we will open the OpenAPI specification
+
+---
 <br>
 ### <i class="fas fa-folder-open"></i> Open the (given) __OpenAPI-specification__
 
@@ -384,21 +388,9 @@ paths: # defines the endpoints
 ```
 ---
 <br>
-### <i class="fas fa-cogs"></i> Generate __source code__
-### from the __OpenAPI specification__
+### <i class="fas fa-cogs"></i> Generate __source code__ from the OpenAPI spec
 
-Copy the specification (productapi.yml) file into your project:
-
-```bash
-cp /workshop/productapi.yml
-    /jhipster-api-service/src/main/resources/swagger/
-```
-
----
-
-### <i class="fas fa-edit"></i> Edit the __Maven__ (pom.xml) file
-#### to generate the sourcecode with the openapi-generator plugin
-
+<i class="fas fa-edit"></i> Edit the __Maven__ (/jhipster-api-service/pom.xml) file
 ```xml
 <plugin>
     <groupId>org.openapitools</groupId>
@@ -433,23 +425,10 @@ cp /workshop/productapi.yml
 ./mvnw generate-sources
 ```
 
-#### The following files were generated:
+The sources will be generated in the src/main/java/de/axa/api/platform/web/gen/ - directory.
 
-```bash
-[INFO] writing file /workspace/jhipster-ms-showcase/jhipster-api-service/target/
-    generated-sources/openapi/
-        src/main/java/de/axa/api/platform/web/api/model/Product.java
-[INFO] writing file /workspace/jhipster-ms-showcase/jhipster-api-service/target/
-    generated-sources/openapi/
-        src/main/java/de/axa/api/platform/web/api/ProductsApiController.java
-[INFO] writing file /workspace/jhipster-ms-showcase/jhipster-api-service/target/
-    generated-sources/openapi/
-        src/main/java/de/axa/api/platform/web/api/ProductsApi.java
-[INFO] writing file /workspace/jhipster-ms-showcase/jhipster-api-service/target/
-    generated-sources/openapi/
-        src/main/java/de/axa/api/platform/web/api/ProductsApiDelegate.java
-```
-#### open them in the IDE and have a look ...
+
+We will use the "Delegation-Pattern" to make a clear separation between controllers and services and to have a default implementation.
 
 ---
 <br>
@@ -460,18 +439,16 @@ cd /workspace/jhipster-ms-showcase/jhipster-api-service
 ./mvnw spring-boot:run
 ```
 
-the API-service will start on port __8081__ and make a request against the API-service
+the API-service will start on port __8081__ and make a request with the SwaggerUI.
 
-```bash
-curl -X GET localhost:8081/api/products
-```
-
-or use the SwaggerUI which will open automatically in the IDE after the service is started
+We will get a 501 - not implemented status code.
 
 ---
 
 ###  <i class="fab fa-java" style="color: black"></i> Write a __ProductService__
 #### which implements the generated ProductsApiDelegate-Interface
+
+Stop the service with STRG-c and implement:
 
 ```java
 
@@ -504,8 +481,18 @@ public class ProductService implements ProductsApiDelegate{
 ```
 
 ---
+<br>
+### Start the service
 
-### <i class="fas fa-file-signature"></i> Write a __Contract Definition__
+```bash
+./mvnw spring-boot:run
+```
+
+and make a request with the SwaggerUI
+
+---
+
+### <i class="fas fa-file-signature"></i> Write a __Contract
 #### in the Spring Cloud Contract DSL
 
 ```bash
