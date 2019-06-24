@@ -1,5 +1,5 @@
 {
-  "id" : "019fbe13-f6df-439e-bde9-db7aa2bbaa70",
+  "id" : "97051382-1b8e-481e-87ae-fd7e78886464",
   "request" : {
     "urlPath" : "/api/echo",
     "method" : "GET",
@@ -14,5 +14,5 @@
     "body" : "{\"message\":\"hello\"}",
     "transformers" : [ "response-template" ]
   },
-  "uuid" : "019fbe13-f6df-439e-bde9-db7aa2bbaa70"
+  "uuid" : "97051382-1b8e-481e-87ae-fd7e78886464"
 }

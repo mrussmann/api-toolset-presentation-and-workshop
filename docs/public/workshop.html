@@ -534,23 +534,23 @@ files will be generated in target/generated-test-sources/contracts
 ./mvnw spring-cloud-contract:generateStubs
 ```
 
-
 ---
 
 ### <i class="fas fa-copy"></i> Copy the generated WireMock contracts
 #### into the WireMock mapping directory
 
 ```bash
-cp /workspace/jhipster-ms-showcase/jhipster-api-service/target/stubs/META-INF/de.axa.api.platform/apiservice/0.0.1-SNAPSHOT/mappings/*.json /workspace/jhipster-ms-showcase/wiremock/mappings/
+cp target/stubs/META-INF/de.axa.api.platform/apiservice/0.0.1-SNAPSHOT/mappings/*.json ../wiremock/mappings/
 ```
 
+Stop the API-service (if running an start a WireMock)
 
 ### <i class="fas fa-running"></i> Start the __WireMock__
 #### on port 8082
 
 ```bash
   cd /workspace/jhipster-ms-showcase/wiremock
-  _JAVA_OPTIONS="-Xmx1G" java -jar wiremock-standalone-2.23.2.jar --port 8082
+  (_JAVA_OPTIONS="-Xmx1G") java -jar wiremock-standalone-2.23.2.jar --port 8082
 ```
 
 ---
@@ -565,7 +565,7 @@ curl -X GET localhost:8082/api/products
 
 #### to compare
 
-#### request the development server
+#### request the development server (if running)
 
 ```bash
 curl -X GET localhost:8081/api/products
