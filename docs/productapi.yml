@@ -11,7 +11,7 @@ paths: # defines the endpoints
   /products: # /api/products
     get: # REST Method
       description: Returns
-      operationId: getProducts # optional
+      operationId: productasdasdsdfsdfdf # optional
       parameters:
       - name: limit
         in: query
