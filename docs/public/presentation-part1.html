@@ -96,11 +96,10 @@ with a corresponding <strong>Axa-Github-Repository</strong>
 ### In a nutshell
 ## Why __API-First__?
 
-- think of your API as a <font size="10">product</font>, understand the needs of your clients before you get started
+- think of your API as a <font size="10">product</font>, understand the needs of your clients before you get started and deliver in predictable <font size="10">quality</font>
 - we can use code-generation (clients, servers, tests and documentation) from the start, saves us <font size="10">time</font>
 - with this ready, the development of the provider and consumer can start <font size="10">early</font> and in <font size="10">parallel</font>
 
-<br>
 so, how can an API specification look like? ...
 
 ---
@@ -187,9 +186,8 @@ __<font size="10">cloud contracts</font>__ can be used to<br>__generate API-clie
 <br>
 <div class="mermaid" style="text-align: center">
 graph TD
-A(contract definition) -- code generation --> B(client stubs)
-A -- code generation --> C(server stubs)
-C(server stubs) --> E(wiremock)
+A(contract) -- code generation --> C(server stubs)
+C(WireMock stubs) --> E(WireMock server)
 A -- code generation --> D(integration tests)
 </div>
 we will use its maven plugin to do this ...

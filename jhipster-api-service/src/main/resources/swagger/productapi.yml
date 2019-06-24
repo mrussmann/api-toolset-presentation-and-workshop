@@ -1,4 +1,4 @@
-sw#ääagger: "2.0" # OpenAPI-Version
+swagger: "2.0" # OpenAPI-Version
 info:  # Metadata
   version: 0.0.1
   title: ProductAPI
