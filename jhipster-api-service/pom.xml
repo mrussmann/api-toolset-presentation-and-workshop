@@ -795,7 +795,7 @@
                                 <goal>generate</goal>
                             </goals>
                             <configuration>
-                                <inputSpec>${project.basedir}/src/main/resources/swagger/productapi.yml</inputSpec>
+                                <inputSpec>${project.basedir}/src/main/resources/swagger/api.yml</inputSpec>
                                 <generatorName>spring</generatorName>
                                 <apiPackage>de.axa.api.platform.web.gen.api</apiPackage>
                                 <modelPackage>de.axa.api.platform.web.gen.api.model</modelPackage>
