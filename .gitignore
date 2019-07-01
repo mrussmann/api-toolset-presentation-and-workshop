@@ -150,4 +150,4 @@ Desktop.ini
 core.java.*
 # for the show
 ProductService.java
-# /jhipster-api-service/src/main/java/de/axa/api/platform/web/gen/**
+/jhipster-api-service/src/main/java/de/axa/api/platform/web/gen/**
