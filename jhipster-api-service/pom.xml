@@ -270,12 +270,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+            <!--
             <exclusions>
                 <exclusion>
                     <groupId>junit</groupId>
                     <artifactId>junit</artifactId>
                 </exclusion>
             </exclusions>
+            -->
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -387,6 +389,32 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
+                             <!-- spring cloud contract plugin to generate integration tests and wiremock stubs out of contracts -->
+                <plugin>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-contract-maven-plugin</artifactId>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <baseClassForTests>de.axa.api.platform.contract.ContractBaseTest</baseClassForTests>
+                        <contractsDirectory>src/test/resources/contracts/</contractsDirectory>
+                        <basePackageForTests>de.axa.api.platform.contract.test</basePackageForTests>
+                        <testMode>MOCKMVC</testMode>
+                        <testFramework>JUNIT</testFramework>
+                        <classifier>stubs</classifier>
+                        <nameSuffixForTests>IntegrationTest</nameSuffixForTests>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>contract-based-tests</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                            <goal>convert</goal>
+                            <goal>generateStubs</goal>
+                            <goal>generateTests</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -481,6 +509,23 @@
                 <artifactId>openapi-generator-maven-plugin</artifactId>
             </plugin>
             <!-- jhipster-needle-maven-add-plugin -->
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>**/*IntegrationTest.java</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
@@ -744,6 +789,7 @@
                             <exclude>**/*IT*</exclude>
                             <exclude>**/*IntTest*</exclude>
                             <exclude>**/*CucumberIT*</exclude>
+                             <exclude>**/*IntegrationTest*</exclude>
                         </excludes>
                     </configuration>
                 </plugin>
@@ -761,6 +807,7 @@
                         <includes>
                             <include>**/*IT*</include>
                             <include>**/*IntTest*</include>
+                            <include>**/*IntegrationTest*</include>
                         </includes>
                         <excludes>
                             <exclude>**/*CucumberIT*</exclude>
@@ -795,7 +842,7 @@
                                 <goal>generate</goal>
                             </goals>
                             <configuration>
-                                <inputSpec>${project.basedir}/src/main/resources/swagger/api.yml</inputSpec>
+                                <inputSpec>${project.basedir}/src/main/resources/swagger/productapi.yml</inputSpec>
                                 <generatorName>spring</generatorName>
                                 <apiPackage>de.axa.api.platform.web.gen.api</apiPackage>
                                 <modelPackage>de.axa.api.platform.web.gen.api.model</modelPackage>
