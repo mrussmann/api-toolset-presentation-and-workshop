@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 /**
  * EchoResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-07-01T13:01:55.392Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-07-01T13:28:54.462Z[Etc/UTC]")
 
 public class EchoResponse   {
   @JsonProperty("message")

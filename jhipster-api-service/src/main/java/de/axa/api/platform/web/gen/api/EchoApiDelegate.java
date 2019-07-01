@@ -17,7 +17,7 @@ import java.util.Optional;
  * A delegate to be called by the {@link EchoApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-07-01T13:01:55.392Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-07-01T13:28:54.462Z[Etc/UTC]")
 
 public interface EchoApiDelegate {
 
