@@ -33,6 +33,25 @@
 			background-color: #373832;
 		}
 
+        .remark-code,
+		.remark-inline-code {
+			font-family: 'IBM Plex Mono';
+			font-size: 15px;
+			font-weight: 700
+		}
+
+		.remark-slide-content:after {
+			content: "";
+			position: absolute;
+			bottom: 10px;
+			right: 40px;
+			height: 40px;
+			width: 120px;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-image: url('');
+		}
+
 
 		h1,
 		h2,
@@ -230,11 +249,12 @@
 			height: 490px;
 			#height: 100vh;
 		}
+
 	</style>
 </head>
 
 <body>
-	<textarea id="source">
+<textarea id="source">
 name: inverse
 layout: true
 class: inverse, middle
