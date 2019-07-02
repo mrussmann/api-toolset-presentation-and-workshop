@@ -83,6 +83,7 @@
         <jacoco.itReportFile>${jacoco.reportFolder}/integrationTest.exec</jacoco.itReportFile>
         <junit.utReportFolder>${project.testresult.directory}/test</junit.utReportFolder>
         <junit.itReportFolder>${project.testresult.directory}/integrationTest</junit.itReportFolder>
+        <spring-cloud.version>2.1.1.RELEASE</spring-cloud.version>
         <!-- jhipster-needle-maven-property -->
     </properties>
 
@@ -96,6 +97,13 @@
                 <scope>import</scope>
             </dependency>
             <!-- jhipster-needle-maven-add-dependency-management -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Greenwich.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -390,32 +398,6 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
-                             <!-- spring cloud contract plugin to generate integration tests and wiremock stubs out of contracts -->
-                <plugin>
-                    <groupId>org.springframework.cloud</groupId>
-                    <artifactId>spring-cloud-contract-maven-plugin</artifactId>
-                    <extensions>true</extensions>
-                    <configuration>
-                        <baseClassForTests>de.axa.api.platform.contract.ContractBaseTest</baseClassForTests>
-                        <contractsDirectory>src/test/resources/contracts/</contractsDirectory>
-                        <basePackageForTests>de.axa.api.platform.contract.test</basePackageForTests>
-                        <testMode>MOCKMVC</testMode>
-                        <testFramework>JUNIT</testFramework>
-                        <classifier>stubs</classifier>
-                        <nameSuffixForTests>IntegrationTest</nameSuffixForTests>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>contract-based-tests</id>
-                            <phase>pre-integration-test</phase>
-                            <goals>
-                            <goal>convert</goal>
-                            <goal>generateStubs</goal>
-                            <goal>generateTests</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -501,6 +483,32 @@
                     </execution>
                 </executions>
             </plugin>
+             <plugin>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-contract-maven-plugin</artifactId>
+                    <version>${spring-cloud.version}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <baseClassForTests>de.axa.api.platform.contract.ContractBaseTest</baseClassForTests>
+                        <contractsDirectory>src/test/resources/contracts/</contractsDirectory>
+                        <basePackageForTests>de.axa.api.platform.contract.test</basePackageForTests>
+                        <testMode>MOCKMVC</testMode>
+                        <testFramework>JUNIT</testFramework>
+                        <classifier>stubs</classifier>
+                        <nameSuffixForTests>IntegrationTest</nameSuffixForTests>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>contract-based-tests</id>
+                            <phase>pre-integration-test</phase>
+                            <goals>
+                                <goal>convert</goal>
+                                <goal>generateStubs</goal>
+                                <goal>generateTests</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+            </plugin>
             <plugin>
                 <!--
                     Plugin that provides API-first development using openapi-generator to
@@ -508,24 +516,6 @@
                 -->
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
-            </plugin>
-            <!-- jhipster-needle-maven-add-plugin -->
-              <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <configuration>
-                    <includes>
-                        <include>**/*IntegrationTest.java</include>
-                    </includes>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
         <pluginManagement>
@@ -790,7 +780,7 @@
                             <exclude>**/*IT*</exclude>
                             <exclude>**/*IntTest*</exclude>
                             <exclude>**/*CucumberIT*</exclude>
-                             <exclude>**/*IntegrationTest*</exclude>
+                            <exclude>**/*IntegrationTest.java</exclude>
                         </excludes>
                     </configuration>
                 </plugin>
@@ -801,14 +791,12 @@
                     <configuration>
                         <!-- Due to spring-boot repackage, without adding this property test classes are not found
                              See https://github.com/spring-projects/spring-boot/issues/6254 -->
-                        <classesDirectory>${project.build.outputDirectory}</classesDirectory>
+                        <!-- <classesDirectory>${project.build.outputDirectory}</classesDirectory> -->
                         <!-- Force alphabetical order to have a reproducible build -->
-                        <runOrder>alphabetical</runOrder>
-                        <reportsDirectory>${junit.itReportFolder}</reportsDirectory>
+                        <!--<runOrder>alphabetical</runOrder>-->
+                        <!--<reportsDirectory>${junit.itReportFolder}</reportsDirectory>-->
                         <includes>
-                            <include>**/*IT*</include>
-                            <include>**/*IntTest*</include>
-                            <include>**/*IntegrationTest*</include>
+                            <include>**/*IntegrationTest.java</include>
                         </includes>
                         <excludes>
                             <exclude>**/*CucumberIT*</exclude>
@@ -873,17 +861,6 @@
                         <classifier>stubs</classifier>
                         <nameSuffixForTests>IntegrationTest</nameSuffixForTests>
                     </configuration>
-                    <executions>
-                        <execution>
-                            <id>contract-based-tests</id>
-                            <phase>pre-integration-test</phase>
-                            <goals>
-                            <goal>convert</goal>
-                            <goal>generateStubs</goal>
-                            <goal>generateTests</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.sonarsource.scanner.maven</groupId>

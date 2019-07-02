@@ -262,18 +262,62 @@ class: inverse, middle
 layout: false
 
 
-## __Re.orange[cap]__
+## __Re.orange[cap]__ - Step 1
 
-1. generated __source code__ from an __openapi-specification__ <br> (openapi -> productapi.yml)
-2. implemented an Product__Service__ which implements the generated interface / delegate
-3. used an __Spring-Cloud-Contract__ definition <br>(contract -> productcontract.yml) to generate <br>
-__Integration-Tests__ and __WireMock-Stubs__
+Generated __source code__ from an __openapi-specification__
+```bash
+mvn generate-sources
+```
+<div class="mermaid" style="text-align: center">
+graph TD
+A(OpenAPI specification) -- Comand Line, Maven Plugin, HTTP-Call --> B[OpenAPI Generator]
+B -- templates --> C(Java Code)
+B -- templates --> D(Python Code)
+B -- templates --> E(Go Code)
+</div>
 
-<br>
+---
+## __Re.orange[cap]__ - Step 2
 
-<i class="fa fa-flag" aria-hidden="true"></i> API-implementation, integration-tests and a <br>corresponding mock-server .orange[ __ready__ ]
-<br>
-<i class="fa fa-arrow-circle-right" aria-hidden="true"></i> client and service development can start in .orange[ __parallel__ ]
+Implemented an <font size="10">ProductService</font> which implements the generated <font size="10">interface / delegate</font> from step 1
+
+```java
+java coding ... :)
+```
+
+---
+## __Re.orange[cap]__ - Step 3
+
+<strong>Used an __Spring-Cloud-Contract__ definition to generate <br>
+__Integration-Tests__ and __WireMock-Stubs__</strong>
+
+<div class="mermaid" style="text-align: center">
+graph TD
+A(contracts YAML) -- maven goal --> B(WireMock stubs .json)
+B -- maven goal --> C(WireMock stubs jar)
+B -- file system --> D(WireMock standalone)
+</div>
+
+---
+
+If you want to try it yourself:
+
+
+```bash
+mvn spring-cloud-contracts:convert
+mvn spring-cloud-contract:generateStubs
+mvn spring-cloud-contract:generateTests
+
+mvn spring-cloud-contracts:run
+```
+
+<hr>
+
+<i class="fa fa-flag" aria-hidden="true"></i> API-<font size="10">implementation, integration-tests</font> and a corresponding <font size="10">mock-server .orange[ __ready__ ]</font>
+
+<hr>
+
+<i class="fa fa-arrow-circle-right" aria-hidden="true"></i> <font size="10">client</font> and <font size="10">server</font> development can start in <font size="10">.orange[ __parallel__ ]</font>
 
 ---
 
