@@ -1,4 +1,5 @@
-asd  version: 0.0.1
+swagger: "2.0" # OpenAPI-Version
+info:  # Metadata
   title: ProductAPI
   description: A very simple product API
   license:
