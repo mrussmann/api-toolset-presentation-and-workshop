@@ -150,6 +150,11 @@
             color: #686868;
             font-weight: bold;
         }
+
+        .white {
+            color: white;
+            font-weight: bold;
+        }
 	</style>
 
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.22.2/swagger-ui.css">
@@ -204,7 +209,7 @@ layout: false
     <img src="api-platform-components.png" width="72%">
 
 
-<p><strong><i class="fab fa-github-square"></i> https://github.axa.de</strong></p>
+<p><strong><i class="fab fa-github-square"></i> https://github.axa.com/axa-de-api-platform</strong></p>
 </center>
 
 ---
@@ -235,31 +240,53 @@ mostly through <font size="10">code generation</font>
 <p>and to demonstrate the <font size="10">API-First-Development</font></p>
 
 ---
+name: inverse
+layout: true
+class: inverse, middle
+---
 
 ## .grey[ Preconfigured ] __Online IDE__
 
 <font size="10">Why</font> an Online-IDE?
 
-- focus on learning and demonstration
-- preconfigured, no local setup needed
-- we can share the development space
-- showcase of how you can interact with your clients, partners ..
+- focus on .white[ learning ]</strong> and .white[ demonstration ]
+- preconfigured, .white[ no local setup ] needed
+- we can .white[ share ] the development space
+- .white[ showcase ] of how you can interact with your clients, partners ..
 <br><br>
 .center[
 ## <i class="far fa-play-circle"></i> <a href="https://bit.ly/api-first-workshop" target="_ide"> <strong> .orange[Start the IDE] </strong></a>
 ]
 
 ---
+layout: false
 
-Recap
 
-- Generated source code from an openapi-specification (productapi.yml)
-- Implemented an ProductService with implements the generated interface / delegate
-- Used on Spring-Cloud-Contract Definition (productcontract.yml) to generate Tests and WireMock-Stubs
-- Made requests against the Service and the MockServer with (hopefully) the same results
+## __Re.orange[cap]__
+
+1. generated __source code__ from an __openapi-specification__ <br> (openapi -> productapi.yml)
+2. implemented an Product__Service__ which implements the generated interface / delegate
+3. used an __Spring-Cloud-Contract__ definition <br>(contract -> productcontract.yml) to generate <br>
+__Integration-Tests__ and __WireMock-Stubs__
+
+<br>
+
+<i class="fa fa-flag" aria-hidden="true"></i> API-implementation, integration-tests and a <br>corresponding mock-server .orange[ __ready__ ]
+<br>
+<i class="fa fa-arrow-circle-right" aria-hidden="true"></i> client and service development can start in .orange[ __parallel__ ]
 
 ---
 
+## __Re.orange[sources]__
+
+<i class="fab fa-github-square"></i>  https://github.axa.com/axa-de-api-platform
+
+<i class="fa fa-book" aria-hidden="true"></i> https://confluence.axa.com/confluence/display/DEITAPIPF/DE-IT+API+Platform+Home
+
+<hr>
+
+<i class="far fa-play-circle"></i> Start your own online IDE by opening <br><font size="10">https://bit.ly/api-first-workshop</font>
+<br><small>github account required</small>
 </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
     </script>
