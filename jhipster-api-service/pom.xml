@@ -279,14 +279,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            <!--
             <exclusions>
                 <exclusion>
                     <groupId>junit</groupId>
                     <artifactId>junit</artifactId>
                 </exclusion>
             </exclusions>
-            -->
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -493,14 +491,13 @@
                         <contractsDirectory>src/test/resources/contracts/</contractsDirectory>
                         <basePackageForTests>de.axa.api.platform.contract.test</basePackageForTests>
                         <testMode>MOCKMVC</testMode>
-                        <testFramework>JUNIT</testFramework>
+                        <testFramework>JUNIT5</testFramework>
                         <classifier>stubs</classifier>
                         <nameSuffixForTests>IntegrationTest</nameSuffixForTests>
                     </configuration>
                     <executions>
                         <execution>
-                            <id>contract-based-tests</id>
-                            <phase>pre-integration-test</phase>
+                            <phase>test-compile</phase>
                             <goals>
                                 <goal>convert</goal>
                                 <goal>generateStubs</goal>
@@ -780,7 +777,7 @@
                             <exclude>**/*IT*</exclude>
                             <exclude>**/*IntTest*</exclude>
                             <exclude>**/*CucumberIT*</exclude>
-                            <exclude>**/*IntegrationTest.java</exclude>
+                            <exclude>**/*IntegrationTest*</exclude>
                         </excludes>
                     </configuration>
                 </plugin>
@@ -796,7 +793,7 @@
                         <!--<runOrder>alphabetical</runOrder>-->
                         <!--<reportsDirectory>${junit.itReportFolder}</reportsDirectory>-->
                         <includes>
-                            <include>**/*IntegrationTest.java</include>
+                             <include>**/*IntegrationTest*</include>
                         </includes>
                         <excludes>
                             <exclude>**/*CucumberIT*</exclude>
