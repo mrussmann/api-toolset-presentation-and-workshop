@@ -9,7 +9,7 @@
     "http": "^0.0.0",
     "http-proxy": "^1.17.0",
     "serve-static": "^1.14.1",
-    "swagger-ui": "^3.22.2"
+    "swagger-ui": "^4.1.3"
   },
   "devDependencies": {
     "http-proxy-middleware": "^0.19.1",
